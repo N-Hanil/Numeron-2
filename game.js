@@ -1,0 +1,124 @@
+var number1, number2, number3
+var score = 0
+const number1box = document.getElementById
+const number2box = document.getElementById
+const number3box = document.getElementById
+
+const plus = document.getElementById("plus")
+const divide = document.getElementById("divide")
+const mul = document.getElementById("mul")
+const minus = document.getElementById("minus")
+const modulus = document.getElementById("modulus")
+
+function randomise() {
+
+    number1 = Math.round(Math.random() * 100)
+    number2 = Math.round(Math.random() * 100)
+
+
+if(number1<number2) {
+    var extra = number1
+    number1 = number2
+    number2 = extra
+}
+
+var operator = Math.ceil(Math.random() * 5)
+
+switch (operator) {
+    case 1:
+        number3 = number1 + number2
+        break;
+
+    case 2:
+        number3 = number1 - number2
+        break;
+
+    case 3:
+        number3 = number1 * number2
+        break;
+
+    case 4:
+        number3 = Math.floor(number1 / number2)
+        number1 = number2 * number3
+    
+    case 5:
+        number3 = number1 % number2
+    break;
+    }
+
+    number1box.innerHTML = number1
+    number2box.innerHTML = number2
+    number3box.innerHTML = number3
+}
+randomise();
+plus.onclick= () => {
+    if((number1+number2)===number3) {
+        score++;
+        randomise();
+        resetTime(timerId)
+    } else {
+        location.href = "./gameoverr.html?score=" + score 
+    }
+}
+
+mul.onclick= () => {
+    if((number1*number2)===number3) {
+        score++;
+        randomise();
+        resetTime(timerId)
+    } else {
+        location.href = "./gameoverr.html?score=" + score 
+    }
+}
+
+minus.onclick= () => {
+    if((number1-number2)===number3) {
+        score++;
+        randomise();
+        resetTime(timerId)
+    } else {
+        location.href = "./gameoverr.html?score=" +score 
+    }
+}
+divide.onclick= () => {
+    if((number1/number2)===number3) {
+        score++;
+        randomise();
+        resetTime(timerId)
+    } else {
+        location.href = "./gameoverr.html?score=" + score 
+    }
+}
+
+modulus.onclick= () => {
+    if((number1%number2)===number3) {
+        score++;
+        randomise();
+        resetTime(timerId)
+    } else {
+        location.href = "./gameoverr.html?score=" + score 
+    }
+}
+
+var time = 5;
+var timer = document.getElementById("timer");
+var timerId;
+
+function startTimer() {
+  time = 3;
+  timer.innerHTML = time;
+  timerId = setInterval(() => {
+    time--;
+    if (time == 0) {
+      location.href = "./gameover.html?score=" + score;
+    }
+    timer.innerHTML = time;
+  }, 1000);
+}
+
+function resetTime(intervalId) {
+  clearInterval(intervalId);
+  startTimer();
+}
+
+startTimer();
